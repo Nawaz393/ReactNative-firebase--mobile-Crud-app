@@ -1,20 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import "react-native-gesture-handler";
+import React from "react";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+import { NavigationContainer } from "@react-navigation/native";
+import AddData from "./Screens/AddData.js";
+import DisplayData from "./Screens/DisplayData.js";
+import SinglePersondata from "./Screens/SinglePersondata.js";
+import Update from "./Screens/Update.js";
+import Search from "./Screens/Search";
+const Drawer = createDrawerNavigator();
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen name="Adddata" component={AddData} />
+        <Drawer.Screen name="ReadData" component={DisplayData} />
+        <Drawer.Screen
+          name="Single"
+          component={SinglePersondata}
+          options={{
+            drawerItemStyle: { height: 0 },
+          }}
+        />
+        <Drawer.Screen name="Search" component={Search} />
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+        <Drawer.Screen
+          name="update"
+          component={Update}
+          options={{
+            drawerItemStyle: { height: 0 },
+          }}
+        />
+      </Drawer.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default App;
